@@ -1,6 +1,7 @@
 Example Voting App
 =========
 
+can i push to master from a feature branch ?
 Getting started
 ---------------
 
