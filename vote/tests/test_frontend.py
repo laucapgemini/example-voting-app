@@ -27,7 +27,7 @@ class VoteUnitTest(unittest.TestCase):
         assert 'Processed by' in str(result.data)
 
     def test_processed_by_is_set2(self):
-        """Assert that processed by string is set 2"""
+        """Assert that processed by string is set 2 """
         result = self.app.get('/')
         assert 'Processed by' in str(result.data)
 
