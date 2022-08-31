@@ -42,7 +42,6 @@ pipeline {
 	stage("docker build"){
 	      agent any
               when{
-                changeset "**/vote/**"
 		branch 'master'
                }
                steps{
