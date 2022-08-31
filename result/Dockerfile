@@ -1,12 +1,11 @@
-FROM node:8.16.0-alpine
+FROM maven:3.6.3-openjdk-17-slim
 
 WORKDIR /app 
 
-COPY . . 
+COPY . .
 
-RUN npm install  && \ 
-    npm audit fix 
-    
-EXPOSE 4000
+RUN mvn package -DskipTests && \
+    mv target/worker-jar-with-dependencies.jar /run/worker.jar &&\
+    rm -rf *
 
-CMD npm start 
+CMD java -jar /run/worker.jar
