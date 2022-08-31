@@ -41,9 +41,12 @@ pipeline {
         }
 	stage("docker build"){
 	      agent any
-              when{
-                changeset "**/vote/**"
-               }
+              /*
+	       * comment the when clause for the tests, to be removed
+	       * when{
+               * changeset "**/vote/**"
+               * }
+	       */
                steps{
 			script {
 				docker.withRegistry("https://index.docker.io/v1/", dockerlogin)
