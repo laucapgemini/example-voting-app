@@ -43,11 +43,9 @@ pipeline {
 	      agent any
                steps{
 			script {
-				docker.withRegistry("", 'dockerlogin') {
 				def voteImage =  docker.build("lauroffecapgemini/vote:v${env.BUILD_ID}", "./vote")
 				voteImage.push()
 				voteImage.push("${env.BRANCH_NAME}")
-				}
 			}
                 }
             }
