@@ -39,6 +39,11 @@ pipeline {
             }
         }
         stage("package"){
+	    agent {
+	        docker {
+		   image 'maven:3.6.3-openjdk-17-slim'
+		   args '--user root'
+	        }
             when{
                 branch 'master'
                 changeset "**/worker/**"
