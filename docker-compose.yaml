@@ -9,6 +9,7 @@ networks:
 services:
   vote:
     image: lauroffecapgemini/vote:master
+    build: ./vote
     ports:
       - 5005:80
     depends_on:
@@ -32,6 +33,7 @@ services:
 
   result:
     image: lauroffecapgemini/result:master
+    build: ./result
     depends_on:
       - db
     networks: 
@@ -41,6 +43,7 @@ services:
 
   worker:
     image: lauroffecapgemini/worker:master
+    build: ./worker
     depends_on:
       - redis
       - db
