@@ -165,8 +165,7 @@ pipeline {
 				voteImage.push("${env.BRANCH_NAME}")
 				}
 			}
-                }
-            }
+               }
         }
 
         stage("docker build worker"){
