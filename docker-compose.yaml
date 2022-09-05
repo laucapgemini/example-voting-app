@@ -1,0 +1,48 @@
+
+volumes:
+  db-data:
+
+networks:
+  instavote:
+    driver: bridge
+
+services:
+  vote:
+    image: lauroffecapgemini/vote:master
+    ports:
+      - 5005:80
+    depends_on:
+      - redis
+    networks: 
+      - instavote
+
+  redis:
+    image: redis:alpine
+    networks: 
+      - instavote
+
+  db:
+    image: postgres:9.4
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks: 
+      - instavote
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+  result:
+    image: lauroffecapgemini/result:master
+    depends_on:
+      - db
+    networks: 
+      - instavote
+    ports:
+      - 5006:4000
+
+  worker:
+    image: lauroffecapgemini/worker:master
+    depends_on:
+      - redis
+      - db
+    networks: 
+      - instavote
